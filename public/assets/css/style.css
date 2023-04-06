@@ -16756,4 +16756,11 @@
    background: #073b4c;
    color: #fff;
   }
-  
+
+  .selectTheme {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction:column;
+    
+  }
