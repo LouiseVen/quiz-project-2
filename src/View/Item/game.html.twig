@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+{% set question = "Question exemple : Comment s'appelle l'école ?" %}
+{% set answers = ['Wild Code School', 'Université du code', 'Retour vers le futur', 'Ecole primaire du code'] %}
+    <div class="question">
+        <p><strong>{{question}}</strong></p>
+    </div> 
+
+    {% for answer in answers %}
+    <div class="answers">
+        <button class="page">
+            <div class="margin"></div>
+            <p>{{answer}}</p>
+        </button>
+    </div>
+    {% endfor %}
+{% endblock %}

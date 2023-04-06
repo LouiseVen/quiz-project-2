@@ -1,19 +1,26 @@
-{% extends 'layout.html.twig' %}
+{% extends 'layout.html.twig' %} {% block title %}Quiz - Choix du thème {%
+endblock %} {% block content %}
 
-{% block title %}Quiz - Choix du thème {% endblock %}
+<!-- set themes à supprimer quand la base de données sera fonctionnelle -->
+{% set themes = ['Litterature', 'Sciences', 'Astronomie', 'Cinema'] %}
 
-{% block content %}
+<h1 class="theme">Choisir son thème !</h1>
 
-<form method="post" action="" class="selectTheme">
-    <label for="theme">Choisir un thème</label>
-    <select name="theme" id="theme">
-        <option value="1" name="theme1">Thème 1</option>
-        <option value="2" name="theme2">Thème 2</option>
-        <option value="3" name="theme3">Thème 3</option>
-        <option value="4" name="theme4">Thème 4</option>
-    </select>
-    <button class = "jolibutton" type="button">Envoyer</button>
-    
-</form>
+<div class="containerThemes">
+<div id="selectionThemes">
+    {% for theme in themes %}
+    <a href="/game?theme={{ theme }}">
+        <div class="cardBox">
+            <div class="card">
+                <span class="text">{{theme}}</span>
+                <div class="content">
+                    <p>Hi, put your text here</p>
+                </div>
+            </div>
+        </div></a
+    >
+    {% endfor %}
+</div>
+</div>
 
 {% endblock %}
