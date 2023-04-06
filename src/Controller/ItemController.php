@@ -17,6 +17,14 @@ class ItemController extends AbstractController
         return $this->twig->render('Item/index.html.twig', ['items' => $items]);
     }
 
+    public function select(): string
+    {
+        // $itemManager = new ItemManager();
+        // $items = $itemManager->selectAll('title');
+
+        return $this->twig->render('Item/select.html.twig');
+    }
+
     /**
      * Show informations for a specific item
      */
