@@ -99,4 +99,9 @@ class ItemController extends AbstractController
             header('Location:/items');
         }
     }
+
+    public function game(): string
+    {
+        return $this->twig->render('Item/game.html.twig');
+    }
 }
