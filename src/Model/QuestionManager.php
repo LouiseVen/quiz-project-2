@@ -14,7 +14,9 @@ class QuestionManager extends AbstractManager
      */
     public function insert(array $question): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`value`, `theme_id`) VALUES (:value, :theme_id)");
+        $statement = $this->pdo->prepare(
+            "INSERT INTO " . self::TABLE . " (`value`, `theme_id`) VALUES (:value, :theme_id)"
+        );
         $statement->bindValue('value', $question['value'], PDO::PARAM_STR);
         $statement->bindValue('theme_id', $question['theme_id'], PDO::PARAM_STR);
 

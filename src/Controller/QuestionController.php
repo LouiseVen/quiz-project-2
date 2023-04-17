@@ -72,7 +72,7 @@ class QuestionController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
             $question = array_map('trim', $_POST);
-            $theme = array_map('trim', $_POST);
+            // $theme = array_map('trim', $_POST);
 
             // TODO validations (length, format...)
 
