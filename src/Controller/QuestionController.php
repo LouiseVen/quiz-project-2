@@ -14,15 +14,15 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $questions = $questionManager->selectAll('value');
 
-        return $this->twig->render('Item/index.html.twig', ['questions' => $questions]);
+        return $this->twig->render('Theme/index.html.twig', ['questions' => $questions]);
     }
 
     // public function select(): string
     // {
-    //     // $itemManager = new ItemManager();
+    //     // $itemManager = new ThemeManager();
     //     // $items = $itemManager->selectAll('title');
 
-    //     return $this->twig->render('Item/select.html.twig');
+    //     return $this->twig->render('Theme/select.html.twig');
     // }
 
     /**
@@ -33,7 +33,7 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $question = $questionManager->selectOneById($id);
 
-        return $this->twig->render('Item/show.html.twig', ['question' => $question]);
+        return $this->twig->render('Theme/show.html.twig', ['question' => $question]);
     }
 
     /**
@@ -41,7 +41,7 @@ class QuestionController extends AbstractController
      */
     // public function edit(int $id): ?string
     // {
-    //     $itemManager = new ItemManager();
+    //     $itemManager = new ThemeManager();
     //     $item = $itemManager->selectOneById($id);
 
     //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -59,7 +59,7 @@ class QuestionController extends AbstractController
     //         return null;
     //     }
 
-    //     return $this->twig->render('Item/edit.html.twig', [
+    //     return $this->twig->render('Theme/edit.html.twig', [
     //         'item' => $item,
     //     ]);
     // }
@@ -84,7 +84,7 @@ class QuestionController extends AbstractController
             return null;
         }
 
-        return $this->twig->render('Item/addQuestion.html.twig');
+        return $this->twig->render('Theme/addQuestion.html.twig');
     }
 
     /**
