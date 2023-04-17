@@ -67,25 +67,25 @@ class QuestionController extends AbstractController
     /**
      * Add a new item
      */
-    public function add(): ?string
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // clean $_POST data
-            $question = array_map('trim', $_POST);
-            $theme = array_map('trim', $_POST);
+    // public function add(): ?string
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //         // clean $_POST data
+    //         $question = array_map('trim', $_POST);
+    //         $theme = array_map('trim', $_POST);
 
-            // TODO validations (length, format...)
+    //         // TODO validations (length, format...)
 
-            // if validation is ok, insert and redirection
-            $questionManager = new QuestionManager();
-            $id = $questionManager->insert($question);
+    //         // if validation is ok, insert and redirection
+    //         $questionManager = new QuestionManager();
+    //         $id = $questionManager->insert($question);
 
-            header('Location:/questions/show?id=' . $id);
-            return null;
-        }
+    //         header('Location:/questions/show?id=' . $id);
+    //         return null;
+    //     }
 
-        return $this->twig->render('Theme/addQuestion.html.twig');
-    }
+    //     return $this->twig->render('Theme/addQuestion.html.twig');
+    // }
 
     /**
      * Delete a specific item
