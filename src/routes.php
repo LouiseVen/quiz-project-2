@@ -11,8 +11,12 @@ return [
     'items' => ['ItemController', 'index',],
     'items/edit' => ['ItemController', 'edit', ['id']],
     'items/show' => ['ItemController', 'show', ['id']],
-    'items/add' => ['ItemController', 'add',],
+
     'items/delete' => ['ItemController', 'delete',],
     'items/select' => ['ItemController', 'select',],
-    'items/game' => ['ItemController', 'game', ],
+    'items/game' => ['ItemController', 'game',],
+    'questions' => ['QuestionController', 'indexQuestions',],
+    'questions/show' => ['QuestionController', 'show', ['id']],
+
+    'questions/add' => ['QuestionController', 'add',],
 ];
