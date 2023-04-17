@@ -11,6 +11,6 @@ class AnswerController extends AbstractController
         $answerManager = new AnswerManager();
         $answers = $answerManager->selectAll('value');
 
-        return $this->twig->render('Item/index.html.twig', ['answers' => $answers]);
+        return $this->twig->render('Theme/index.html.twig', ['answers' => $answers]);
     }
 }
