@@ -4,9 +4,9 @@ namespace App\Model;
 
 use PDO;
 
-class ItemManager extends AbstractManager
+class ThemeManager extends AbstractManager
 {
-    public const TABLE = 'item';
+    public const TABLE = 'themes';
 
     /**
      * Insert new item in database
