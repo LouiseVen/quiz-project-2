@@ -13,8 +13,9 @@ return [
     'theme/show' => ['ThemeController', 'show', ['id']],
 
     'items/delete' => ['ThemeController', 'delete',],
-    'game' => ['ThemeController', 'game',],
-    'questions' => ['QuestionController', 'indexQuestions',],
+    'game' => ['ThemeController', 'game', ['theme_id']],
+
+    'questions' => ['QuestionController', 'index',],
     'questions/show' => ['QuestionController', 'show', ['id']],
 
     'questions/add' => ['QuestionController', 'add',],

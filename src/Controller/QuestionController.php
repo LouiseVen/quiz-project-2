@@ -14,7 +14,7 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $questions = $questionManager->selectAll('value');
 
-        return $this->twig->render('Theme/index.html.twig', ['questions' => $questions]);
+        return $this->twig->render('Theme/indexQuestions.html.twig', ['questions' => $questions]);
     }
 
     // public function select(): string
@@ -33,7 +33,7 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $question = $questionManager->selectOneById($id);
 
-        return $this->twig->render('Theme/show.html.twig', ['question' => $question]);
+        return $this->twig->render('Theme/showQuestions.html.twig', ['question' => $question]);
     }
 
     /**

@@ -9,7 +9,7 @@ endblock %} {% block content %}
 <div class="containerThemes">
 <div id="selectionThemes">
     {% for theme in themes %}
-    <a href="/game?theme={{ theme.name }}">
+    <a href="/game?theme={{ theme.id }}">
         <div class="cardBox">
             <div class="card">
                 <span class="text">{{theme.name}}</span>
