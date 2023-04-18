@@ -6,12 +6,15 @@ use App\Model\GameManager;
 
 class GameController extends AbstractCOntroller
 {
-    public function play(int $theme_id): int
+    public function questionsByTheme(int $id = 1)
     {
         $gameManager = new GameManager();
-        $parameters = [
-            'questions' => $gameManager->getGame($theme_id),
-        ];
-        return $this->twig->render('Theme/game.html.twig', $parameters);
+        $questions = $gameManager->selectByTheme($id);
+        // $parameters = [
+        //     'questions' => $gameManager->getGame($theme_id),
+        // ];
+        var_dump($questions);
+        die();
+        return $this->twig->render('Theme/game.html.twig', ['questions' => $questions]);
     }
 }
