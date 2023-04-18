@@ -20,6 +20,17 @@ class ThemeManager extends AbstractManager
         return (int)$this->pdo->lastInsertId();
     }
 
+    public function selectByName(string $theme)
+    {
+        $statement = $this->pdo->prepare(
+            "SELECT * FROM " . self::TABLE . " WHERE `name` = :name"
+        );
+        $statement->bindValue('name', $theme['name'], PDO::PARAM_STR);
+
+        return $statement->execute();
+    }
+
+
     /**
      * Update item in database
      */
