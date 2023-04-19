@@ -36,6 +36,16 @@ class QuestionController extends AbstractController
         return $this->twig->render('Theme/showQuestions.html.twig', ['question' => $question]);
     }
 
+    public function showByTheme(int $themeId)
+    {
+        $questionManager = new QuestionManager();
+        $questions = $questionManager->selectByTheme($themeId);
+
+        var_dump($questions);
+        die();
+
+        return $this->twig->render('Theme/game.html.twig', ['questions' => $questions]);
+    }
     /**
      * Edit a specific item
      */

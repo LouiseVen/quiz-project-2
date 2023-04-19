@@ -25,8 +25,7 @@ DROP TABLE IF EXISTS `answers`;
 CREATE TABLE `answers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `value` text NOT NULL,
-  `is_true` tinyint(1) NOT NULL,
-  `question_id` int NOT NULL,
+  `is_true` tiny int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_question_id` (`question_id`),
   CONSTRAINT `fk_question_id` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)

@@ -13,7 +13,7 @@ return [
     'theme/show' => ['ThemeController', 'show', ['id']],
 
     'items/delete' => ['ThemeController', 'delete',],
-    'game' => ['GameController', 'questionsByTheme', ['id']],
+    'game' => ['QuestionController', 'showByTheme', ['themeId']],
 
     'questions' => ['QuestionController', 'index',],
     'questions/show' => ['QuestionController', 'show', ['id']],

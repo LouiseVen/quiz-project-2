@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Model\GameManager;
 
-class GameController extends AbstractCOntroller
+class GameController extends AbstractController
 {
-    public function questionsByTheme(int $id = 1)
+    public function questionsByTheme(int $id)
     {
         $gameManager = new GameManager();
         $questions = $gameManager->selectByTheme($id);

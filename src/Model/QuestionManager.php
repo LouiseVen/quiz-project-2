@@ -35,4 +35,16 @@ class QuestionManager extends AbstractManager
 
     //     return $statement->execute();
     // }
+
+    public function selectByTheme(int $themeId): array
+    {
+        // $themeManager = new ThemeManager();
+        // $themeId = $themeManager->selectOneById($themeId);
+
+        $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE theme_id= :id");
+
+        $statement->bindValue('id', $themeId, \PDO::PARAM_INT);
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

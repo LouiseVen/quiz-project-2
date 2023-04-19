@@ -11,24 +11,27 @@ class ThemeManager extends AbstractManager
     /**
      * Insert new item in database
      */
-    public function insert(array $item): int
+    public function insert(array $theme): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`title`) VALUES (:title)");
-        $statement->bindValue('title', $item['title'], PDO::PARAM_STR);
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`name`) VALUES (:name)");
+        $statement->bindValue('name', $theme['name'], PDO::PARAM_STR);
 
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
     }
 
-    public function selectByName(string $theme)
-    {
-        $statement = $this->pdo->prepare(
-            "SELECT * FROM " . self::TABLE . " WHERE `name` = :name"
-        );
-        $statement->bindValue('name', $theme['name'], PDO::PARAM_STR);
+    // public function selectByName(string $theme): ?int
+    // {
+    //     $statement = $this->pdo->prepare(
+    //         "SELECT id FROM " . static::TABLE . " WHERE `name` = :name"
+    //     );
+    //     $statement->bindValue('name', $theme, \PDO::PARAM_STR);
+    //     $statement->execute();
 
-        return $statement->execute();
-    }
+    //     $result = $statement->fetch();
+
+    //     return $result ? (int) $result['id'] : null;
+    // }
 
 
     /**

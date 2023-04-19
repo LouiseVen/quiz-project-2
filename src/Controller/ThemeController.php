@@ -29,13 +29,13 @@ class ThemeController extends AbstractController
         return $this->twig->render('Theme/show.html.twig', ['theme' => $theme]);
     }
 
-    public function selectByName(string $name): string
-    {
-        $themeManager = new ThemeManager();
-        $theme = $themeManager->selectByName($name);
+    // public function idByName(string $name): string
+    // {
+    //     $themeManager = new ThemeManager();
+    //     $theme = $themeManager->getIdByName($name);
 
-        return $this->twig->render('Theme/game.html.twig', ['theme' => $theme]);
-    }
+    //     return $this->twig->render('Theme/game.html.twig', ['theme' => $theme]);
+    // }
     /**
      * Edit a specific item
      */
