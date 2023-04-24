@@ -1,0 +1,99 @@
+{% extends 'Layout/layout.html.twig' %}
+{% block title %}Quiz - Accueil{% endblock %}
+
+{% block content %}
+    <!DOCTYPE html>
+
+<!-- The index page, which will contain the basis for the website -->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="public\assets\css\style.css" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+  </head>
+
+  <body>
+    <header>
+      
+    </header>
+
+    <!-- Intro settings -->
+      <style>
+        /* Default height for small devices */
+        #intro-example {
+          height: 400px;
+        }
+
+        /* Height for devices larger than 992px */
+        @media (min-width: 992px) {
+          #intro-example {
+            height: 600px;
+          }
+        }
+      </style>
+
+
+      <!-- Background image -->
+      <div
+        id="intro-example"
+        class="p-5 text-center bg-image"
+        style="
+          background-image: url('assets/images/quiz-header-background.jpg');
+        "
+      >
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7)">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+              <h1 class="mb-3">Quiz de la Mort qui Tue !</h1>
+              <h5 class="mb-4">Un quiz bien meilleur que l'autre quiz !</h5>
+              <!-- <a
+                class="btn btn-outline-light btn-lg m-2"
+                href="themes.php"
+                role="button"
+                rel="nofollow"
+                target="_blank"
+                >Lancer le quiz !</a
+              > -->
+              <div class="jolibtn">
+                <a href ="themes"><button class="jolibutton">Lancer le quiz !</button></a>
+
+                <button class="jolibutton">Se connecter (Fonctionnalité à venir)</button>
+              
+              <!-- <a
+                class="btn btn-outline-light btn-lg m-2"
+                href=""
+                target="_blank"
+                role="button"
+                >Se connecter (fonctionnalité à venir)</a
+              > -->
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Background image -->
+      <main>
+    
+    </main>
+
+    <footer></footer>
+  </body>
+</html>
+{% endblock %}
