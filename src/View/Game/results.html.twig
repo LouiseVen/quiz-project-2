@@ -1,8 +1,13 @@
 {% extends 'Layout/layout.html.twig' %}
 
+{% block title %} Votre score {% endblock %}
 {% block content %}
 
 <h1>Votre score : {{result}}</h1>
+
+<a href="themes">
+    <button type = "button" class="btn btn-primary">Recommencer un nouveau quiz</button>
+</a>
 
 
 {% endblock %}

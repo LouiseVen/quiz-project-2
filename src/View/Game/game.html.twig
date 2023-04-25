@@ -1,19 +1,26 @@
 {% extends 'Layout/layout.html.twig' %}
 
+{% block title %} Quiz Time ! {% endblock %}
 {% block content %}
 
 {% set rightAnswer = 0 %}
 
-<h1>Saurez-vous répondre à ces questions ?</h1>
+<div class="titleGame">
+    <h1>Saurez-vous répondre à ces questions ?</h1>
+</div>
 
+
+<div class="questionReponses">
 {% for question in questions %}
         
         <div class="question">
             <p><strong>{{question.value}}</strong></p>
         </div> 
-        {% for answer in question.answers %}
+
+        <div class="answers">
+        {# {% for answer in question.answers %}
             
-            <div class="answers">
+            
             <a href="/themeselected?id={{themeId}}&questionId={{question.id}}&answerId={{answer.id}}" >
 
             {% if session['answer-' ~ question.id] and (answer.is_true and answer.selected) %}
@@ -43,10 +50,34 @@
 
             {% endif %}
                 
-            </div>
-        {% endfor %}
+            
+        {% endfor %} #}
+
+        {% for answer in question.answers %}
+            
+        <a href="/themeselected?id={{themeId}}&questionId={{question.id}}&answerId={{answer.id}}" >
+        
+        {% if answer.selected %}
+
+            {% if answer.is_true %}
+                <button class="answerbutton" id="trueanswer" type="button" >
+                {% set rightAnswer = rightAnswer + 1 %}
+            {% else %}
+                <button class="answerbutton" id="falseanswer" type="button" >
+                
+            {% endif %}
+        {% else %}
+            <button class="answerbutton" type="button">
+        {% endif %}
+                {{answer.value}}
+            </button>
+        </a> 
+
+    {% endfor %}
+        </div>
 
 {% endfor %}
+</div>
 
 {{ dump(rightAnswer)}}
 
