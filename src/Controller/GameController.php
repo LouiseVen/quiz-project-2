@@ -108,7 +108,7 @@ class GameController extends AbstractController
         foreach ($questions as $key  => $value) {
             $answers = $gameManager->GetAnswers($value['id']);
 
-            if ($questionId && $answerId) {
+            if ($questionId && $answerId && empty($_SESSION['answer-' . $questionId])) {
                 $_SESSION['answer-' . $questionId] = $answerId;           
             }
 
@@ -116,14 +116,23 @@ class GameController extends AbstractController
             foreach ($answers as $answerIndex => $answer) {
                 $answers[$answerIndex]['selected'] = isset($_SESSION['answer-'.$value['id']]) && $_SESSION['answer-'.$value['id']] == $answer['id'];
             }
- 
-
+            
+            // if (isset($_SESSION['answer-'.$value['id']] )){
+            //     shuffle($answers);
+            //     var_dump($answers);
+            // }
             $questions[$key]['answers'] = $answers;
+            
         }
         $this->twig->addGlobal('session', $_SESSION);
 
         return $this->twig->render('Game/game.html.twig', ['questions' => $questions, 'themeId' => $theme_id]);
     }
+
+    public function answerSelected()
+    {
+
+    } 
 
     public function getScore()
     {

@@ -13,11 +13,14 @@ class UserController extends AbstractController
 
             $credentials = array_map('trim', $_POST);
 
+            // var_dump($credentials);
+            // die();
+
             $user = $userManager->selectOneByEmail($credentials['email']);
 
             if ($user && password_verify($credentials['password'], $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
-                header('Location: /');
+                header('Location: /account');
                 exit();
             }
         }
@@ -31,6 +34,23 @@ class UserController extends AbstractController
 
     public function register(): string
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //TODO Add your code here to create a new accessory
+            $user = array_map('trim', $_POST);
+
+            $userManager = new UserManager();
+            $userManager->insert($user);
+            header('Location:/login');
+        }
+
         return $this->twig->render('User/register.html.twig');
+    }
+
+    public function show()
+    {
+        $userManager = new UserManager();
+        $userManager->selectAll();
+
+        return $this->twig->render('User/account.html.twig');
     }
 }

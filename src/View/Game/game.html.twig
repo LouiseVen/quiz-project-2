@@ -9,13 +9,11 @@
     <h1>Saurez-vous répondre à ces questions ?</h1>
 </div>
 
-
-<div class="questionReponses">
 {% for question in questions %}
-        
         <div class="question">
             <p><strong>{{question.value}}</strong></p>
         </div> 
+
 
         <div class="answers">
         {# {% for answer in question.answers %}
@@ -60,10 +58,10 @@
         {% if answer.selected %}
 
             {% if answer.is_true %}
-                <button class="answerbutton" id="trueanswer" type="button" >
+                <button class="answerbutton trueanswer" type="button" >
                 {% set rightAnswer = rightAnswer + 1 %}
             {% else %}
-                <button class="answerbutton" id="falseanswer" type="button" >
+                <button class="answerbutton falseanswer" type="button" >
                 
             {% endif %}
         {% else %}
@@ -75,6 +73,7 @@
 
     {% endfor %}
         </div>
+</div>
 
 {% endfor %}
 </div>

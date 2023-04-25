@@ -16999,7 +16999,7 @@
     transform: translateY(1px);
   }
 
-  #trueanswer {
+  .trueanswer {
     padding: 0.5em 2em 0.5em 2.5em;
     font-size: 1em;
     font-weight: bold;
@@ -17016,7 +17016,7 @@
     transition: 100ms;
   }
 
-  #falseanswer {
+  .falseanswer {
     padding: 0.5em 2em 0.5em 2.5em;
     font-size: 1em;
     font-weight: bold;
@@ -17042,3 +17042,6 @@
     margin-left:0px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
+
+
+  
