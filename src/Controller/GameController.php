@@ -90,26 +90,46 @@ class GameController extends AbstractController
         }
     }
 
-    public function themeSelection() {
+    public function themeSelection()
+    {
         $gameManager = new GameManager();
         $themes = $gameManager->getAllThemes();
 
         return $this->twig->render('Game/selectTheme.html.twig', ['themes' => $themes]);
     }
 
-    public function themeSelected(int $theme_id)
+    public function themeSelected(int $theme_id, ?int $questionId = null, ?int $answerId = null)
     {
+        // session_destroy();
+        // session_start();
         $gameManager = new GameManager();
         $questions = $gameManager->getQuestions($theme_id);
-        $answers = [];
         foreach ($questions as $key  => $value) {
-            // foreach ($value as $question) {
-            //     $question_id = $question->getId();
-            //     $answers = $gameManager->getAnswers($question_id);
-            // }
-            $questions[$key]['answers'] = $gameManager->GetAnswers($value['id']);
-        }
+            $answers = $gameManager->GetAnswers($value['id']);
 
-        return $this->twig->render('Game/game.html.twig', ['questions' => $questions, 'answers' => $answers] );
+            if ($questionId && $answerId) {
+                $_SESSION['answer-' . $questionId] = $answerId;           
+            }
+
+            
+            foreach ($answers as $answerIndex => $answer) {
+                $answers[$answerIndex]['selected'] = isset($_SESSION['answer-'.$value['id']]) && $_SESSION['answer-'.$value['id']] == $answer['id'];
+            }
+ 
+
+            $questions[$key]['answers'] = $answers;
+        }
+        $this->twig->addGlobal('session', $_SESSION);
+
+        return $this->twig->render('Game/game.html.twig', ['questions' => $questions, 'themeId' => $theme_id]);
+    }
+
+    public function getScore()
+    {
+        $rightAnswer = $_POST['results'];
+        $result = $rightAnswer*10;
+        
+
+        return $this->twig->render('Game/results.html.twig', ['result' => $result]);
     }
 }
