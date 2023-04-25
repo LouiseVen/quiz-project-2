@@ -104,6 +104,7 @@ class GameController extends AbstractController
         // session_start();
         $gameManager = new GameManager();
         $questions = $gameManager->getQuestions($theme_id);
+        
         foreach ($questions as $key  => $value) {
             $answers = $gameManager->GetAnswers($value['id']);
 

@@ -51,7 +51,7 @@ class GameManager extends AbstractManager
 
     public function getAnswers($question_id)
     {
-        $statement = $this->pdo->prepare("SELECT * FROM answers WHERE question_id = :question_id");
+        $statement = $this->pdo->prepare("SELECT * FROM answers WHERE question_id = :question_id ORDER BY RAND()");
         $statement->bindValue('question_id', $question_id, \PDO::PARAM_INT);
         $statement->execute();
 
