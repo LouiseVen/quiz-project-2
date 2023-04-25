@@ -1,0 +1,70 @@
+{# TODO : manage errors display #}
+
+<form method="post">
+	<input type="hidden" value="{{ question.id }}" name="id">
+	<label for="value">question : </label>
+	<input type="textarea" value="{{ question.value }}" name="value" id="value" rows="2">
+	 {# <textarea class="form-control" value="{{ question.value }}" name="value" id="value" rows="2"></textarea> #}
+
+	{# <input type="textarea" value="{{ question.value }}" name="value" id="value"> #}
+	<div class="form-group">
+		<label for="value">réponse 1 : </label>
+		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
+
+		<select name="is_true" id="is_true">
+			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+			<option value="0">Faux</option>
+			<option value="1">Juste</option>
+						
+		</select>
+	</div>
+	
+	<div class="form-group">
+		<label for="value">réponse 2 : </label>
+		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
+
+		<select name="is_true" id="is_true">
+			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+			<option value="0">Faux</option>
+			<option value="1">Juste</option>
+						
+		</select>
+	</div>
+	
+	<div class="form-group">
+		<label for="value">réponse 3 : </label>
+		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
+
+		<select name="is_true" id="is_true">
+			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+			<option value="0">Faux</option>
+			<option value="1">Juste</option>
+						
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="value">réponse 4 : </label>
+		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
+
+		<select name="is_true" id="is_true">
+			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+			<option value="0">Faux</option>
+			<option value="1">Juste</option>
+						
+		</select>
+	</div>
+	
+
+	<label for="subject-select">Thème : </label>
+
+        <select name="theme_id" id="theme_id">
+            <option value="">Veuillez choisir un thème</option>
+            <option value="1">Littérature</option>
+            <option value="2">Géographie</option>
+			<option value="3">Cinéma</option>
+            <option value="4">Astronomie</option>            
+		</select>
+	
+	<button type="submit" class="jolibutton">Ajouter</button>
+</form>
