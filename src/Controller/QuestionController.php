@@ -14,7 +14,7 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $questions = $questionManager->selectAll('value');
 
-        return $this->twig->render('Theme/indexQuestions.html.twig', ['questions' => $questions]);
+        return $this->twig->render('Questions/indexQuestions.html.twig', ['questions' => $questions]);
     }
 
     // public function select(): string
@@ -33,7 +33,7 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $question = $questionManager->selectOneById($id);
 
-        return $this->twig->render('Theme/showQuestions.html.twig', ['question' => $question]);
+        return $this->twig->render('Questions/showQuestions.html.twig', ['question' => $question]);
     }
 
     public function showByTheme(int $themeId)
@@ -77,25 +77,25 @@ class QuestionController extends AbstractController
     /**
      * Add a new item
      */
-    // public function add(): ?string
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         // clean $_POST data
-    //         $question = array_map('trim', $_POST);
-    //         $theme = array_map('trim', $_POST);
+    public function add(): ?string
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // clean $_POST data
+            $question = array_map('trim', $_POST);
+            $theme = array_map('trim', $_POST);
 
-    //         // TODO validations (length, format...)
+            // TODO validations (length, format...)
 
-    //         // if validation is ok, insert and redirection
-    //         $questionManager = new QuestionManager();
-    //         $id = $questionManager->insert($question);
+            // if validation is ok, insert and redirection
+            $questionManager = new QuestionManager();
+            $id = $questionManager->insert($question);
 
-    //         header('Location:/questions/show?id=' . $id);
-    //         return null;
-    //     }
+            header('Location:/questions/show?id=' . $id);
+            return null;
+        }
 
-    //     return $this->twig->render('Theme/addQuestion.html.twig');
-    // }
+        return $this->twig->render('Questions/addQuestion.html.twig');
+    }
 
     /**
      * Delete a specific item
@@ -107,7 +107,7 @@ class QuestionController extends AbstractController
             $questionManager = new QuestionManager();
             $questionManager->delete((int)$id);
 
-            header('Location:/items');
+            header('Location:/questions');
         }
     }
 }

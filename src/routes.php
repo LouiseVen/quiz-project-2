@@ -19,4 +19,5 @@ return [
     'questions/show' => ['QuestionController', 'show', ['id']],
 
     'questions/add' => ['QuestionController', 'add',],
+    'questions/delete' => ['QuestionController', 'delete',],
 ];
