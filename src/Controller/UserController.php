@@ -30,6 +30,8 @@ class UserController extends AbstractController
 
     public function logout()
     {
+        session_destroy();
+        header('Location: /');
     }
 
     public function register(): string
@@ -49,8 +51,9 @@ class UserController extends AbstractController
     public function show()
     {
         $userManager = new UserManager();
-        $userManager->selectAll();
+        $user = $userManager->selectAll();
 
-        return $this->twig->render('User/account.html.twig');
+
+        return $this->twig->render('User/account.html.twig', ['user' => $user]);
     }
 }
