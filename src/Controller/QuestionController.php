@@ -43,9 +43,6 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $questions = $questionManager->selectByTheme($themeId);
 
-        var_dump($questions);
-        die();
-
         return $this->twig->render('Theme/game.html.twig', ['questions' => $questions]);
     }
     /**
@@ -99,31 +96,11 @@ class QuestionController extends AbstractController
         // return $this->twig->render('Questions/addQuestion.html.twig');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Clean $_POST data
-            $question = array_map('trim', $_POST);
-            $themes = array_map('trim', $_POST);
-            $answers = [];
 
-            // Retrieve answers from form data
-            foreach ($question['answer'] as $index => $answer) {
-                $answers[] = [
-                    'value' => $answer,
-                    'is_true' => isset($question['is_true'][$index]) ? 1 : 0
-                ];
-            }
-
-            // TODO: Perform validations on $question, $themes and $answers
-
-            // If validation is ok, insert the question and its answers
             $questionManager = new QuestionManager();
-            $question_id = $questionManager->insert($question);
+            $question_id = $questionManager->insert($_POST);
 
-            $answerManager = new AnswerManager();
 
-            foreach ($answers as $answer) {
-                $answer['question_id'] = $question_id;
-                $answerManager->insert($answer, $question_id);
-            }
 
             header('Location:/questions/show?id=' . $question_id);
             return null;

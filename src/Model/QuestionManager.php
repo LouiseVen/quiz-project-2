@@ -35,16 +35,17 @@ class QuestionManager extends AbstractManager
         $statement->execute();
         $questionId = (int)$this->pdo->lastInsertId();
 
+        $answerManager = new AnswerManager();
+
         // Insérer les réponses dans la table 'answers'
-        for ($i = 1; $i <= 4; $i++) {
-            $answer_value = $question['answer' . $i];
-            $is_true = isset($question['is_true' . $i]) && $question['is_true' . $i] == '1' ? 1 : 0;
+        foreach ($question['answers'] as $answer) {
+            $is_true = isset($answer['is_true']) && $answer['is_true'] == '1' ? 1 : 0;
 
             $statement = $this->pdo->prepare(
                 "INSERT INTO " . AnswerManager::TABLE . " (`question_id`, `value`, `is_true`) VALUES (:question_id, :value, :is_true)"
             );
             $statement->bindValue(':question_id', $questionId, PDO::PARAM_INT);
-            $statement->bindValue(':value', $answer_value, PDO::PARAM_STR);
+            $statement->bindValue(':value', $answer['value'], PDO::PARAM_STR);
             $statement->bindValue(':is_true', $is_true, PDO::PARAM_INT);
             $statement->execute();
         }
