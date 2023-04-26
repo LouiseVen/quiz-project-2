@@ -19,7 +19,3 @@ We want to include the following features :
     - High-scores
     - Creation of accounts
     - And many more !!
-
-## Branches
-
-Each member of the group will create its own branch. 

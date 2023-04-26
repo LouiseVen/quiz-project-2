@@ -1,0 +1,81 @@
+{# TODO : manage errors display #}
+<section id="addForm">
+	<h1>Ajouter une question</h1>
+	<form method="post" class="d-flex flex-column align-items-center">
+		{% if question.id %}
+			<input type="hidden" value="{{ question.id }}" name="id">
+
+		{% endif %}
+
+		<div class="form-group m-4">
+			<label for="value">Question :</label>
+			<textarea class="form-control" name="value" id="value" rows="2" value="{{ question.value ?? '' }}">{{ question.value ?? '' }}</textarea>
+		</div>
+
+		<div class="form-group m-4">
+			<label for="answer1">Réponse 1 :</label>
+			<textarea class="form-control" name="answers[0][value]" id="answer1" rows="2">{{ answer1.value }}</textarea>
+			<select name="answers[0][is_true]" id="is_true1">
+				<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+				<option value="0" {{ answer1.is_true == 0 ? 'selected' : '' }}>Faux</option>
+				<option value="1" {{ answer1.is_true == 1 ? 'selected' : '' }}>Juste</option>
+			</select>
+		</div>
+		
+		<div class="form-group m-4">
+			<label for="answer2">Réponse 2 :</label>
+			<textarea class="form-control" name="answers[1][value]" id="answer2" rows="2">{{ answer2.value }}</textarea>
+			<select name="answers[1][is_true]" id="is_true2">
+				<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+				<option value="0" {{ answer2.is_true == 0 ? 'selected' : '' }}>Faux</option>
+				<option value="1" {{ answer2.is_true == 1 ? 'selected' : '' }}>Juste</option>
+			</select>
+		</div>
+		
+		
+		<div class="form-group m-4">
+			<label for="answer3">Réponse 3 :</label>
+			<textarea class="form-control" name="answers[2][value]" id="answer3" rows="2">{{ answer3.value }}</textarea>
+			<select name="answers[2][is_true]" id="is_true3">
+				<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+				<option value="0" {{ answer3.is_true == 0 ? 'selected' : '' }}>Faux</option>
+				<option value="1" {{ answer3.is_true == 1 ? 'selected' : '' }}>Juste</option>
+			</select>
+		</div>
+
+		<div class="form-group m-4">
+			<label for="answer4">Réponse 4 :</label>
+			<textarea class="form-control" name="answers[3][value]" id="answer4" rows="2">{{ answer4.value }}</textarea>
+			<select name="answers[3][is_true]" id="is_true4">
+				<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
+				<option value="0" {{ answer4.is_true == 0 ? 'selected' : '' }}>Faux</option>
+				<option value="1" {{ answer4.is_true == 1 ? 'selected' : '' }}>Juste</option>
+			</select>
+		</div>
+		
+
+		
+		<div class="form-group m-4 d-flex flex-column align-items-center">
+			<label for="theme_id">Thème :</label>
+			<select id="theme_id" name="theme_id">
+				<option value="" disabled>Veuillez choisir un thème</option>
+		
+				{% for theme in themes %}
+					<option value="{{ theme.id }}">{{ theme.name }}</option>
+				{% endfor %}
+			</select>
+			
+			<button type="submit" class="btn-end m-5">Ajouter</button>
+		</div>
+	</form>
+</div>
+
+
+	
+	
+	
+	
+
+	
+	
+

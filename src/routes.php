@@ -10,12 +10,14 @@ return [
     '' => ['HomeController', 'index',],
     'themes' => ['ThemeController', 'index',],
     'items/edit' => ['ThemeController', 'edit', ['id']],
-    'items/show' => ['ThemeController', 'show', ['id']],
+    'theme/show' => ['ThemeController', 'show', ['id']],
 
     'items/delete' => ['ThemeController', 'delete',],
-    'items/game' => ['ThemeController', 'game',],
-    'questions' => ['QuestionController', 'indexQuestions',],
+    'game' => ['QuestionController', 'showByTheme', ['themeId']],
+
+    'questions' => ['QuestionController', 'index',],
     'questions/show' => ['QuestionController', 'show', ['id']],
 
     'questions/add' => ['QuestionController', 'add',],
+    'questions/delete' => ['QuestionController', 'delete',],
 ];

@@ -3,13 +3,15 @@
 {% block content %}
 
 <!-- Tests -->
-
+{# 
 {% set question = 'Question' %}
-{% set answers = ['Faux', 'Faux', 'Faux', 'Vrai'] %}
+{% set answers = ['Faux', 'Faux', 'Faux', 'Vrai'] %} #}
 
 
 <div class="question">
-    <p><strong>{{question}}</strong></p>
+    {% for question in questions %}
+    <p><strong>{{question.value}}</strong></p>
+    {% endfor %}
 </div> 
 
 {% for answer in answers %}
