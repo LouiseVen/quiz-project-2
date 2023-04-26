@@ -3,11 +3,14 @@
 {% block title %} Votre score {% endblock %}
 {% block content %}
 
+<div class="resultats">
 <h1>Votre score : {{result}}</h1>
+
+<img src="assets/images/coolmonster.svg" alt="cool monster" height=300>
 
 <a href="themes">
     <button type = "button" class="btn btn-primary">Recommencer un nouveau quiz</button>
 </a>
-
+</div>
 
 {% endblock %}

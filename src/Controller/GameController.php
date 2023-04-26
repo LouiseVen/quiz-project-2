@@ -124,20 +124,17 @@ class GameController extends AbstractController
             $questions[$key]['answers'] = $answers;
             
         }
-        $this->twig->addGlobal('session', $_SESSION);
+        
 
         return $this->twig->render('Game/game.html.twig', ['questions' => $questions, 'themeId' => $theme_id]);
     }
 
-    public function answerSelected()
-    {
-
-    } 
-
     public function getScore()
     {
+        $gameManager = new GameManager();
         $rightAnswer = $_POST['results'];
         $result = $rightAnswer*10;
+        $gameManager->saveScore($result);
         
 
         return $this->twig->render('Game/results.html.twig', ['result' => $result]);
