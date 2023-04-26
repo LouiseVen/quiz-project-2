@@ -12,16 +12,44 @@ class QuestionManager extends AbstractManager
     /**
      * Insert new item in database
      */
+    // public function insert(array $question): int
+    // {
+    //     $statement = $this->pdo->prepare(
+    //         "INSERT INTO " . self::TABLE . " (`value`, `theme_id`) VALUES (:value, :theme_id)"
+    //     );
+    //     $statement->bindValue('value', $question['value'], PDO::PARAM_STR);
+    //     $statement->bindValue('theme_id', $question['theme_id'], PDO::PARAM_INT);
+
+    //     $statement->execute();
+    //     return (int)$this->pdo->lastInsertId();
+    // }
+
     public function insert(array $question): int
     {
         $statement = $this->pdo->prepare(
             "INSERT INTO " . self::TABLE . " (`value`, `theme_id`) VALUES (:value, :theme_id)"
         );
-        $statement->bindValue('value', $question['value'], PDO::PARAM_STR);
-        $statement->bindValue('theme_id', $question['theme_id'], PDO::PARAM_STR);
+        $statement->bindValue(':value', $question['value'], PDO::PARAM_STR);
+        $statement->bindValue(':theme_id', $question['theme_id'], PDO::PARAM_INT);
 
         $statement->execute();
-        return (int)$this->pdo->lastInsertId();
+        $questionId = (int)$this->pdo->lastInsertId();
+
+        // Insérer les réponses dans la table 'answers'
+        for ($i = 1; $i <= 4; $i++) {
+            $answer_value = $question['answer' . $i];
+            $is_true = isset($question['is_true' . $i]) && $question['is_true' . $i] == '1' ? 1 : 0;
+
+            $statement = $this->pdo->prepare(
+                "INSERT INTO " . AnswerManager::TABLE . " (`question_id`, `value`, `is_true`) VALUES (:question_id, :value, :is_true)"
+            );
+            $statement->bindValue(':question_id', $questionId, PDO::PARAM_INT);
+            $statement->bindValue(':value', $answer_value, PDO::PARAM_STR);
+            $statement->bindValue(':is_true', $is_true, PDO::PARAM_INT);
+            $statement->execute();
+        }
+
+        return $questionId;
     }
 
     /**

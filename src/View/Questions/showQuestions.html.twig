@@ -1,12 +1,15 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Question {{ question.value }}</h1>
-    <p>{{ question.id }}. {{ question.value }}</p>
-    <a href="/questions/edit?id={{ question.id }}">Edit</a>
+    <h1>Question : {{ question.value }}</h1>
+    <p>{{ question.value }}</p>
+    
     <form action="/questions/delete" method="POST">
         <input type="hidden" name="id" value="{{ question.id }}">
-        <button>Delete</button>
+        <button class="btn btn-primary">Delete</button>
     </form>
-    <a href="/questions">Back</a>
+    <div class="form-group">
+        <a class="btn btn-primary" href="/questions/edit?id={{ question.id }}">Edit</a>
+        <a class="btn btn-primary" href="/questions">Back</a>
+    </div>
 {% endblock %}

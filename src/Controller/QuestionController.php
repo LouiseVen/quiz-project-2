@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Model\QuestionManager;
+use App\Model\AnswerManager;
+use App\Model\ThemeManager;
 
 class QuestionController extends AbstractController
 {
@@ -79,22 +81,59 @@ class QuestionController extends AbstractController
      */
     public function add(): ?string
     {
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     // clean $_POST data
+        //     $question = array_map('trim', $_POST);
+        //     $theme = array_map('trim', $_POST);
+
+        //     // TODO validations (length, format...)
+
+        //     // if validation is ok, insert and redirection
+        //     $questionManager = new QuestionManager();
+        //     $id = $questionManager->insert($question);
+
+        //     header('Location:/questions/show?id=' . $id);
+        //     return null;
+        // }
+
+        // return $this->twig->render('Questions/addQuestion.html.twig');
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // clean $_POST data
+            // Clean $_POST data
             $question = array_map('trim', $_POST);
-            $theme = array_map('trim', $_POST);
+            $themes = array_map('trim', $_POST);
+            $answers = [];
 
-            // TODO validations (length, format...)
+            // Retrieve answers from form data
+            foreach ($question['answer'] as $index => $answer) {
+                $answers[] = [
+                    'value' => $answer,
+                    'is_true' => isset($question['is_true'][$index]) ? 1 : 0
+                ];
+            }
 
-            // if validation is ok, insert and redirection
+            // TODO: Perform validations on $question, $themes and $answers
+
+            // If validation is ok, insert the question and its answers
             $questionManager = new QuestionManager();
-            $id = $questionManager->insert($question);
+            $question_id = $questionManager->insert($question);
 
-            header('Location:/questions/show?id=' . $id);
+            $answerManager = new AnswerManager();
+
+            foreach ($answers as $answer) {
+                $answer['question_id'] = $question_id;
+                $answerManager->insert($answer, $question_id);
+            }
+
+            header('Location:/questions/show?id=' . $question_id);
             return null;
         }
 
-        return $this->twig->render('Questions/addQuestion.html.twig');
+        // Get themes for select dropdown
+        $themeManager = new ThemeManager();
+        $themes = $themeManager->selectAll();
+
+        return $this->twig->render('Questions/addQuestion.html.twig', ['themes' => $themes]);
     }
 
     /**

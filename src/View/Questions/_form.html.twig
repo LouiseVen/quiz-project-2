@@ -2,62 +2,65 @@
 
 <form method="post">
 	<input type="hidden" value="{{ question.id }}" name="id">
-	<label for="value">question : </label>
-	<input type="textarea" value="{{ question.value }}" name="value" id="value" rows="2">
-	 {# <textarea class="form-control" value="{{ question.value }}" name="value" id="value" rows="2"></textarea> #}
-
-	{# <input type="textarea" value="{{ question.value }}" name="value" id="value"> #}
 	<div class="form-group">
-		<label for="value">réponse 1 : </label>
-		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
+		<label for="value">Question :</label>
+		<textarea class="form-control" name="value" id="value" rows="2">{{ question.value }}</textarea>
+	</div>
 
-		<select name="is_true" id="is_true">
+	<div class="form-group">
+		<label for="answer1">Réponse 1 :</label>
+		<textarea class="form-control" name="answer1" id="answer1" rows="2">{{ answer1.value }}</textarea>
+		<select name="is_true1" id="is_true1">
 			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
-			<option value="0">Faux</option>
-			<option value="1">Juste</option>
-						
+			<option value="0" {{ answer1.is_true == 0 ? 'selected' : '' }}>Faux</option>
+			<option value="1" {{ answer1.is_true == 1 ? 'selected' : '' }}>Juste</option>
 		</select>
 	</div>
 	
 	<div class="form-group">
-		<label for="value">réponse 2 : </label>
-		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
-
-		<select name="is_true" id="is_true">
+		<label for="answer2">Réponse 2 :</label>
+		<textarea class="form-control" name="answer2" id="answer2" rows="2">{{ answer2.value }}</textarea>
+		<select name="is_true2" id="is_true2">
 			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
-			<option value="0">Faux</option>
-			<option value="1">Juste</option>
-						
+			<option value="0" {{ answer2.is_true == 0 ? 'selected' : '' }}>Faux</option>
+			<option value="1" {{ answer2.is_true == 1 ? 'selected' : '' }}>Juste</option>
 		</select>
 	</div>
 	
+	
 	<div class="form-group">
-		<label for="value">réponse 3 : </label>
-		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
-
-		<select name="is_true" id="is_true">
+		<label for="answer3">Réponse 3 :</label>
+		<textarea class="form-control" name="answer3" id="answer3" rows="2">{{ answer3.value }}</textarea>
+		<select name="is_true3" id="is_true3">
 			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
-			<option value="0">Faux</option>
-			<option value="1">Juste</option>
-						
+			<option value="0" {{ answer3.is_true == 0 ? 'selected' : '' }}>Faux</option>
+			<option value="1" {{ answer3.is_true == 1 ? 'selected' : '' }}>Juste</option>
 		</select>
 	</div>
 
 	<div class="form-group">
-		<label for="value">réponse 4 : </label>
-		<textarea class="form-control" value="{{ answer.value }}" name="value" id="value" rows="2"></textarea>
-
-		<select name="is_true" id="is_true">
+		<label for="answer4">Réponse 4 :</label>
+		<textarea class="form-control" name="answer4" id="answer4" rows="2">{{ answer4.value }}</textarea>
+		<select name="is_true4" id="is_true4">
 			<option value="">Veuillez sélectionner si la réponse est juste ou fausse</option>
-			<option value="0">Faux</option>
-			<option value="1">Juste</option>
-						
+			<option value="0" {{ answer4.is_true == 0 ? 'selected' : '' }}>Faux</option>
+			<option value="1" {{ answer4.is_true == 1 ? 'selected' : '' }}>Juste</option>
 		</select>
 	</div>
 	
 
-	<label for="subject-select">Thème : </label>
+	
 
+	{# <label for="theme_id">Thème :</label>
+	<select id="theme_id" name="theme_id" class="form-control">
+  		<option value="">Veuillez choisir un thème</option>
+  
+  		{% for theme in themes %}
+    		<option value="{{ theme.id }}">{{ theme.name }}</option>
+  		{% endfor %}
+	</select> #}
+	<div class="form-group">
+		<label for="theme_id">Thème : </label>
         <select name="theme_id" id="theme_id">
             <option value="">Veuillez choisir un thème</option>
             <option value="1">Littérature</option>
@@ -65,6 +68,17 @@
 			<option value="3">Cinéma</option>
             <option value="4">Astronomie</option>            
 		</select>
+	</div>
 	
-	<button type="submit" class="jolibutton">Ajouter</button>
+	<button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
+
+
+	
+	
+	
+	
+
+	
+	
+
