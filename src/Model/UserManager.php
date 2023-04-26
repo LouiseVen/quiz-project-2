@@ -2,8 +2,10 @@
 
 namespace App\Model;
 
+use PDO;
+
 class UserManager extends AbstractManager {
-    public const TABLE = '';
+    public const TABLE = 'users';
 
     public string $email;
 
@@ -13,11 +15,22 @@ class UserManager extends AbstractManager {
 
     public function selectOneByEmail(string $email)
     {
-        $query=$this->pdo->prepare("SELECT * FROM user WHERE email=:email");
-        $query->bindValue('email', $email['email'], \PDO::PARAM_STR);
+        $query=$this->pdo->prepare("SELECT * FROM " . self::TABLE . " WHERE email=:email");
+        
+        $query->bindValue('email', $email, \PDO::PARAM_STR);
 
         $query->execute();
-        return $this->pdo->query($query)->fetch();
+        return $query->fetch();
+    }
+
+    public function insert(array $user)
+    {
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`name`, `password`, `email`) VALUES (:name, :password, :email)");
+        $statement->bindValue('name', $user['name'], PDO::PARAM_STR);
+        $statement->bindValue('password', $user['password'], PDO::PARAM_STR);
+        $statement->bindValue('email', $user['email'], PDO::PARAM_STR);
+
+        $statement->execute();
     }
     
 }

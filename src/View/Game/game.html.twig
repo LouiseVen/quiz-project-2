@@ -9,49 +9,17 @@
     <h1>Saurez-vous répondre à ces questions ?</h1>
 </div>
 
-
-<div class="questionReponses">
 {% for question in questions %}
-        
+    <div class="questionReponses">
         <div class="question">
             <p><strong>{{question.value}}</strong></p>
+            <div class="iconquiz">
+            <img src="assets/images/icon-quiz.png" alt="iconeQuiz" />
+            </div>
         </div> 
 
+
         <div class="answers">
-        {# {% for answer in question.answers %}
-            
-            
-            <a href="/themeselected?id={{themeId}}&questionId={{question.id}}&answerId={{answer.id}}" >
-
-            {% if session['answer-' ~ question.id] and (answer.is_true and answer.selected) %}
-
-                <button class="answerbutton" id = "trueanswer" type="button">
-                    {{answer.value}}
-                </button></a>
-
-            {% set rightAnswer = rightAnswer + 1 %}
-
-            {% endif %}
-
-            {% if session['answer-' ~ question.id] and (answer.is_true == false and answer.selected) %}
-            
-                <button class="answerbutton" id = "falseanswer" type="button">
-                    {{answer.value}}
-                </button></a> 
-
-                
-            {% endif %}
-
-            {% if session['answer-' ~ question.id] == false %}
-
-                <button class="answerbutton" type="button">
-                    {{answer.value}} 
-                </button></a> 
-
-            {% endif %}
-                
-            
-        {% endfor %} #}
 
         {% for answer in question.answers %}
             
@@ -60,10 +28,10 @@
         {% if answer.selected %}
 
             {% if answer.is_true %}
-                <button class="answerbutton" id="trueanswer" type="button" >
+                <button class="answerbutton trueanswer" type="button" >
                 {% set rightAnswer = rightAnswer + 1 %}
             {% else %}
-                <button class="answerbutton" id="falseanswer" type="button" >
+                <button class="answerbutton falseanswer" type="button" >
                 
             {% endif %}
         {% else %}
@@ -75,11 +43,10 @@
 
     {% endfor %}
         </div>
+</div>
 
 {% endfor %}
 </div>
-
-{{ dump(rightAnswer)}}
 
 <form method="post" action="/results">
     <div class="endButton">

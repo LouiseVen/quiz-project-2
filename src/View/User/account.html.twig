@@ -1,0 +1,19 @@
+{% extends 'Layout/column.html.twig' %}
+
+{% block content %}
+
+    <div>
+        <h1>Votre compte</h1>
+        <h3>Pseudo</h3>
+        <p>{{user.name}}</p>
+
+        <h3>Email</h3>
+        <p>{{user.email}}</p>
+
+        <h3>Score</h3>
+        <p>{{user.score}}</p>
+
+        <a href="logout"><button class="btn btn-primary">Se déconnecter</button></a>
+
+    </div>
+{%  endblock %}

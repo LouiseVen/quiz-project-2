@@ -13,7 +13,8 @@ return [
     'themeselected' => ['GameController', 'themeSelected', ['id', 'questionId', 'answerId']],
     'results' => ['GameController', 'getScore', ['rightAnswer']],
     'games/delete' => ['GameController', 'delete',],
-    'login' => ['UserController', 'login',],
+    'login' => ['UserController', 'login', ['email']],
     'logout' => ['UserController', 'logout',],
     'register' => ['UserController', 'register',],
+    'account' => ['UserController', 'show', ['user']],
 ];
