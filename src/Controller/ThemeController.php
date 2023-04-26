@@ -2,38 +2,46 @@
 
 namespace App\Controller;
 
-use App\Model\ItemManager;
+use App\Model\ThemeManager;
 
-class ItemController extends AbstractController
+class ThemeController extends AbstractController
 {
     /**
      * List items
      */
     public function index(): string
     {
-        $itemManager = new ItemManager();
-        $items = $itemManager->selectAll('title');
+        $itemManager = new ThemeManager();
+        $themes = $itemManager->selectAll('name');
 
-        return $this->twig->render('Item/index.html.twig', ['items' => $items]);
+        return $this->twig->render('Theme/select.html.twig', ['themes' => $themes]);
     }
+
 
     /**
      * Show informations for a specific item
      */
     public function show(int $id): string
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneById($id);
+        $themeManager = new ThemeManager();
+        $theme = $themeManager->selectOneById($id);
 
-        return $this->twig->render('Item/show.html.twig', ['item' => $item]);
+        return $this->twig->render('Theme/show.html.twig', ['theme' => $theme]);
     }
 
+    // public function idByName(string $name): string
+    // {
+    //     $themeManager = new ThemeManager();
+    //     $theme = $themeManager->getIdByName($name);
+
+    //     return $this->twig->render('Theme/game.html.twig', ['theme' => $theme]);
+    // }
     /**
      * Edit a specific item
      */
     public function edit(int $id): ?string
     {
-        $itemManager = new ItemManager();
+        $itemManager = new ThemeManager();
         $item = $itemManager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,7 +59,7 @@ class ItemController extends AbstractController
             return null;
         }
 
-        return $this->twig->render('Item/edit.html.twig', [
+        return $this->twig->render('Theme/edit.html.twig', [
             'item' => $item,
         ]);
     }
@@ -68,14 +76,14 @@ class ItemController extends AbstractController
             // TODO validations (length, format...)
 
             // if validation is ok, insert and redirection
-            $itemManager = new ItemManager();
+            $itemManager = new ThemeManager();
             $id = $itemManager->insert($item);
 
             header('Location:/items/show?id=' . $id);
             return null;
         }
 
-        return $this->twig->render('Item/add.html.twig');
+        return $this->twig->render('Theme/add.html.twig');
     }
 
     /**
@@ -85,10 +93,15 @@ class ItemController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = trim($_POST['id']);
-            $itemManager = new ItemManager();
+            $itemManager = new ThemeManager();
             $itemManager->delete((int)$id);
 
             header('Location:/items');
         }
+    }
+
+    public function game(): string
+    {
+        return $this->twig->render('Theme/game.html.twig');
     }
 }

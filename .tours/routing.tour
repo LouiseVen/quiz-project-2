@@ -76,10 +76,10 @@
           "character": 33
         }
       },
-      "description": "On associe ce point d'entrée à un contrôleur : `ItemController`"
+      "description": "On associe ce point d'entrée à un contrôleur : `ThemeController`"
     },
     {
-      "file": "src/Controller/ItemController.php",
+      "file": "src/Controller/ThemeController.php",
       "selection": {
         "start": {
           "line": 7,
@@ -93,7 +93,7 @@
       "description": "Comme tu peux le voir, un contrôleur n'est rien d'autre qu'une classe. Elle a néanmoins un role cruciale dans notre application MVC : c'est elle qui traite la requête HTTP d'entrée, et c'est également elle qui retourne la requête HTTP de réponse."
     },
     {
-      "file": "src/Controller/ItemController.php",
+      "file": "src/Controller/ThemeController.php",
       "selection": {
         "start": {
           "line": 12,
@@ -118,10 +118,10 @@
           "character": 42
         }
       },
-      "description": "Et c'est précisément le rôle de ce second parametre.\n\nIci nous déclarons que si on appelle la route `items` (alias [http://localhost:8000/items/](http://localhost:8000/items/)), on appellera alors la function `index()` du contrôleur `ItemController`. Le code déclenché sera donc ..."
+      "description": "Et c'est précisément le rôle de ce second parametre.\n\nIci nous déclarons que si on appelle la route `items` (alias [http://localhost:8000/items/](http://localhost:8000/items/)), on appellera alors la function `index()` du contrôleur `ThemeController`. Le code déclenché sera donc ..."
     },
     {
-      "file": "src/Controller/ItemController.php",
+      "file": "src/Controller/ThemeController.php",
       "selection": {
         "start": {
           "line": 12,
@@ -182,7 +182,7 @@
       "description": "Sur cette route il n'y en a qu'un : id\r\n\r\nAussi pour contacter cette page, l'url ressemblera à ceci : \r\n[http://localhost:8000/items/show?id=1](http://localhost:8000/items/show?id=1)\r\nCes paramètres supplémentaires sont à passer via la *query string*."
     },
     {
-      "file": "src/Controller/ItemController.php",
+      "file": "src/Controller/ThemeController.php",
       "selection": {
         "start": {
           "line": 24,
@@ -196,7 +196,7 @@
       "description": "Et l'action show() sera appelée."
     },
     {
-      "file": "src/Controller/ItemController.php",
+      "file": "src/Controller/ThemeController.php",
       "selection": {
         "start": {
           "line": 24,
@@ -210,7 +210,7 @@
       "description": "Cette fois la fonction attend un paramètre en entrée.\r\n\r\nEt bien c'est notre router qui lui fournira (dés lors qu'on a bien dit dans la route qu'un paramètre devait etre passé).\r\n\r\nDonc si l'URL [http://localhost:8000/items/show?id=1](http://localhost:8000/items/show?id=1) est appelée, la valeur de `$id` sera de `1`"
     },
     {
-      "file": "src/Controller/ItemController.php",
+      "file": "src/Controller/ThemeController.php",
       "selection": {
         "start": {
           "line": 27,
@@ -221,7 +221,7 @@
           "character": 50
         }
       },
-      "description": "Ensuite on peut utiliser `$id` pour récupérer le bon item dans notre base de données à l'aide de notre `ItemManager`(qui appartient à la couche Modèle de notre MVC)"
+      "description": "Ensuite on peut utiliser `$id` pour récupérer le bon item dans notre base de données à l'aide de notre `ThemeManager`(qui appartient à la couche Modèle de notre MVC)"
     }
   ]
 }

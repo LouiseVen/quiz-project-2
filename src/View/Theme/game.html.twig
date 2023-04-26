@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+<!-- Tests -->
+{# 
+{% set question = 'Question' %}
+{% set answers = ['Faux', 'Faux', 'Faux', 'Vrai'] %} #}
+
+
+<div class="question">
+    {% for question in questions %}
+    <p><strong>{{question.value}}</strong></p>
+    {% endfor %}
+</div> 
+
+{% for answer in answers %}
+<div class="answers">
+    <button class="answerbutton">
+        <p>{{answer}}</p>
+    </button>
+</div>
+{% endfor %}
+
+<!-- 
+
+
+{% for question in questions %}
+{% set get = '' %}
+{% if loop.questions < i %}
+    <div class="question">
+        <p><strong>{{question}}</strong></p>
+    </div> 
+
+    {% for answer in answers %}
+    <div class="answers">
+        <button class="page">
+            <div class="margin"></div>
+            <p>{{answer}}</p>
+        </button>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endfor %} -->
+{% endblock %}

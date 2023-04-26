@@ -1,0 +1,129 @@
+<?php
+
+namespace App\Controller;
+
+use App\Model\QuestionManager;
+use App\Model\AnswerManager;
+use App\Model\ThemeManager;
+
+class QuestionController extends AbstractController
+{
+    /**
+     * List items
+     */
+    public function index(): string
+    {
+        $questionManager = new QuestionManager();
+        $questions = $questionManager->selectAll('value');
+
+        return $this->twig->render('Questions/indexQuestions.html.twig', ['questions' => $questions]);
+    }
+
+    // public function select(): string
+    // {
+    //     // $itemManager = new ThemeManager();
+    //     // $items = $itemManager->selectAll('title');
+
+    //     return $this->twig->render('Theme/select.html.twig');
+    // }
+
+    /**
+     * Show informations for a specific item
+     */
+    public function show(int $id): string
+    {
+        $questionManager = new QuestionManager();
+        $question = $questionManager->selectOneById($id);
+
+        return $this->twig->render('Questions/showQuestions.html.twig', ['question' => $question]);
+    }
+
+    public function showByTheme(int $themeId)
+    {
+        $questionManager = new QuestionManager();
+        $questions = $questionManager->selectByTheme($themeId);
+
+        return $this->twig->render('Theme/game.html.twig', ['questions' => $questions]);
+    }
+    /**
+     * Edit a specific item
+     */
+    // public function edit(int $id): ?string
+    // {
+    //     $itemManager = new ThemeManager();
+    //     $item = $itemManager->selectOneById($id);
+
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //         // clean $_POST data
+    //         $item = array_map('trim', $_POST);
+
+    //         // TODO validations (length, format...)
+
+    //         // if validation is ok, update and redirection
+    //         $itemManager->update($item);
+
+    //         header('Location: /items/show?id=' . $id);
+
+    //         // we are redirecting so we don't want any content rendered
+    //         return null;
+    //     }
+
+    //     return $this->twig->render('Theme/edit.html.twig', [
+    //         'item' => $item,
+    //     ]);
+    // }
+
+    /**
+     * Add a new item
+     */
+    public function add(): ?string
+    {
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     // clean $_POST data
+        //     $question = array_map('trim', $_POST);
+        //     $theme = array_map('trim', $_POST);
+
+        //     // TODO validations (length, format...)
+
+        //     // if validation is ok, insert and redirection
+        //     $questionManager = new QuestionManager();
+        //     $id = $questionManager->insert($question);
+
+        //     header('Location:/questions/show?id=' . $id);
+        //     return null;
+        // }
+
+        // return $this->twig->render('Questions/addQuestion.html.twig');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $questionManager = new QuestionManager();
+            $question_id = $questionManager->insert($_POST);
+
+
+
+            header('Location:/questions/show?id=' . $question_id);
+            return null;
+        }
+
+        // Get themes for select dropdown
+        $themeManager = new ThemeManager();
+        $themes = $themeManager->selectAll();
+
+        return $this->twig->render('Questions/addQuestion.html.twig', ['themes' => $themes]);
+    }
+
+    /**
+     * Delete a specific item
+     */
+    public function delete(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = trim($_POST['id']);
+            $questionManager = new QuestionManager();
+            $questionManager->delete((int)$id);
+
+            header('Location:/questions');
+        }
+    }
+}

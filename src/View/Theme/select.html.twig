@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %} {% block title %}Quiz - Choix du thème {%
+endblock %} {% block content %}
+
+<!-- set themes à supprimer quand la base de données sera fonctionnelle -->
+
+
+<h1 class="theme">Choisir son thème !</h1>
+
+<div class="containerThemes">
+<div id="selectionThemes">
+    {% for theme in themes %}
+    <a href="/game?themeId={{ theme.id }}">
+        <div class="cardBox">
+            <div class="card">
+                <span class="text">{{theme.name}}</span>
+                <div class="content">
+                    <p>Hi, put your text here</p>
+                </div>
+            </div>
+        </div></a
+    >
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}

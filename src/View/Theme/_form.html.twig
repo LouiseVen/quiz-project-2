@@ -1,0 +1,20 @@
+{# TODO : manage errors display #}
+
+<form method="post">
+	<input type="hidden" value="{{ question.id }}" name="id">
+	<label for="value">question : </label>
+	<input type="textarea" value="{{ question.value }}" name="value" id="value">
+	<label for="value">réponse juste : </label>
+	<input type="text" value="{{ answer.value }}" name="value" id="value">
+
+	<label for="subject-select">Thème : </label>
+
+        <select name="theme_id" id="theme_id">
+            <option value="">Veuillez choisir un thème</option>
+            <option value="1">Littérature</option>
+            <option value="2">Géographie</option>
+			<option value="3">Cinéma</option>
+            <option value="4">Astronomie</option>            
+		</select>
+	<button>Submit</button>
+</form>
