@@ -23,7 +23,8 @@
 
         {% for answer in question.answers %}
             
-        <a href="/themeselected?id={{themeId}}&questionId={{question.id}}&answerId={{answer.id}}" >
+        <div id="answer{{answer.id}}">
+        <a href="/themeselected?id={{themeId}}&questionId={{question.id}}&answerId={{answer.id}}#answer{{answer.id}}" >
         
         {% if answer.selected %}
 
@@ -39,7 +40,7 @@
         {% endif %}
                 {{answer.value}}
             </button>
-        </a> 
+        </a> </div>
 
     {% endfor %}
         </div>

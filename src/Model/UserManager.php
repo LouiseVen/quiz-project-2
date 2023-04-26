@@ -7,11 +7,11 @@ use PDO;
 class UserManager extends AbstractManager {
     public const TABLE = 'users';
 
-    public string $email;
+    // public string $email;
 
-    public function __construct() {
-        parent::__construct();
-    }
+    // public function __construct() {
+    //     parent::__construct();
+    // }
 
     public function selectOneByEmail(string $email)
     {

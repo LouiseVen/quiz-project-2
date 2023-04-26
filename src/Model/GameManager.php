@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Model;
+
 use App\Model\Entity\Questions;
 use PDO;
 
 class GameManager extends AbstractManager
 {
-    
+
 
     /**
      * Insert new question in database
@@ -51,16 +52,23 @@ class GameManager extends AbstractManager
 
     public function getAnswers($question_id)
     {
-        if (empty($_SESSION['question-'.$question_id.'-answers'])) {
+        if (empty($_SESSION['question-' . $question_id . '-answers'])) {
             $statement = $this->pdo->prepare("SELECT * FROM answers WHERE question_id = :question_id ORDER BY RAND()");
             $statement->bindValue('question_id', $question_id, \PDO::PARAM_INT);
             $statement->execute();
-            $_SESSION['question-'.$question_id.'-answers'] = $statement->fetchAll();
-        } 
+            $_SESSION['question-' . $question_id . '-answers'] = $statement->fetchAll();
+        }
 
-        return $_SESSION['question-'.$question_id.'-answers'];
-        
+        return $_SESSION['question-' . $question_id . '-answers'];
+    }
 
+    public function saveScore(int $score)
+    {
+        $statement = $this->pdo->prepare("UPDATE users SET `score` = :score WHERE `id` = :id");
+        $statement->bindValue('score', $score, \PDO::PARAM_STR);
+        $statement->bindValue('id', $_SESSION['user_id'], \PDO::PARAM_INT);
 
+        $statement->execute();
+        return (int)$_SESSION['user_id'];
     }
 }

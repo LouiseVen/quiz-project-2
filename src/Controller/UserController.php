@@ -18,7 +18,7 @@ class UserController extends AbstractController
 
             $user = $userManager->selectOneByEmail($credentials['email']);
 
-            if ($user && password_verify($credentials['password'], $user['password'])) {
+            if ($user && $credentials['password'] == $user['password']) {
                 $_SESSION['user_id'] = $user['id'];
                 header('Location: /account');
                 exit();
@@ -30,7 +30,7 @@ class UserController extends AbstractController
 
     public function logout()
     {
-        session_destroy();
+        unset($_SESSION['user_id']);
         header('Location: /');
     }
 
@@ -50,10 +50,6 @@ class UserController extends AbstractController
 
     public function show()
     {
-        $userManager = new UserManager();
-        $user = $userManager->selectAll();
-
-
-        return $this->twig->render('User/account.html.twig', ['user' => $user]);
+        return $this->twig->render('User/account.html.twig');
     }
 }

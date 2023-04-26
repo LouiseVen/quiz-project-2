@@ -2,7 +2,11 @@
 
 {% block content %}
 
-    <div>
+    <div class="wholemonster">
+
+    <img src="assets/images/cute-monster.png" alt="cute monster">
+
+        <div class="infos">
         <h1>Votre compte</h1>
         <h3>Pseudo</h3>
         <p>{{user.name}}</p>
@@ -12,8 +16,12 @@
 
         <h3>Score</h3>
         <p>{{user.score}}</p>
+        </div>
 
-        <a href="logout"><button class="btn btn-primary">Se déconnecter</button></a>
-
+        
     </div>
+    <div class="logout">
+        <a href="logout"><button class="btn btn-primary">Se déconnecter</button></a>
+    </div>
+    
 {%  endblock %}
